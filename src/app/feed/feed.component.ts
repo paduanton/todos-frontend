@@ -9,14 +9,14 @@ import { Todos } from './../interfaces/todos.interface';
   styleUrls: ['./feed.component.css']
 })
 export class FeedComponent implements OnInit {
-  items: Todos[];
+  todos: Todos[];
   error: any;
 
   constructor(private todoService: TodoService) {}
 
   ngOnInit() {
     this.todoService.getTodos().subscribe(
-      (items: Todos[]) => (this.items = items),
+      (todos: Todos[]) => (this.todos = todos['data']),
       (error: any) => (this.error = error)
     );
   }
@@ -25,7 +25,7 @@ export class FeedComponent implements OnInit {
     this.todoService
       .createTodo(userId, title, description, completed)
       .subscribe(
-        (item: Todos) => this.items.push(item),
+        (item: Todos) => this.todos.push(item),
         (error: any) => (this.error = error)
       );
   }
@@ -33,7 +33,7 @@ export class FeedComponent implements OnInit {
   delete(id: number) {
     this.todoService.deleteTodo(id).subscribe(
       (success: any) =>
-        this.items.splice(this.items.findIndex((item) => item.id === id)),
+        this.todos.splice(this.todos.findIndex((item) => item.id === id)),
       (error: any) => (this.error = error)
     );
   }

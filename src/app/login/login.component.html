@@ -1,8 +1,15 @@
 <div class="container">
     <div class="row">
         <div class="col-md-5 mx-auto">
+            
             <div id="first">
                 <div class="myform form">
+                    <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <h5 class="alert-heading">Erro ao fazer login</h5>
+                        <p>{{ error?.error.message | json }}</p>
+                        <hr>
+                        <p class="mb-0">{{ error?.error.errors | json }}</p>
+                    </div>
                     <div class="logo mb-3">
                         <div class="col-md-12 text-center">
                             <h1>Acesse sua conta</h1>
@@ -10,8 +17,8 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email ou Nome de usuário</label>
-                        <input #user type="text" name="user" class="form-control" id="email" aria-describedby="emailHelp"
-                            placeholder="fulano@gmail.com | fulano.tal">
+                        <input #user type="text" name="user" class="form-control" id="email"
+                            aria-describedby="emailHelp" placeholder="fulano@gmail.com | fulano.tal">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Senha</label>
@@ -19,10 +26,12 @@
                             aria-describedby="emailHelp" placeholder="***********">
                     </div>
                     <div class="form-group">
-                        <p class="text-center">Lembrar de mim: <input #remember_me name="remember_me" type="checkbox"></p>
+                        <p class="text-center">Lembrar de mim: <input #remember_me name="remember_me" type="checkbox">
+                        </p>
                     </div>
                     <div class="col-md-12 text-center ">
-                        <button (click)="login(user.value, password.value, remember_me.checked)" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
+                        <button (click)="login(user.value, password.value, remember_me.checked)"
+                            class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
                     </div>
                     <div class="col-md-12 ">
                         <div class="login-or">
@@ -32,18 +41,10 @@
                     </div>
 
                     <div class="form-group">
-                        <p class="text-center">Não tem uma conta? <a routerLink="/signup" id="signup">Cadastre-se aqui</a></p>
+                        <p class="text-center">Não tem uma conta? <a routerLink="/signup" id="signup">Cadastre-se
+                                aqui</a></p>
                     </div>
                 </div>
             </div>
-            <p>{{ error?.message }}</p>
-            <p *ngIf="error">{{ error?.error | json }}</p>
         </div>
     </div>
-
-
-<!-- <input #username type='text' placeholder='username'>
-<input #password type='password' placeholder='password'>
-<button (click)="login(username.value, password.value)">login</button>
-<p>{{ error?.message }}</p>
-<p *ngIf="error">{{ error?.error | json }}</p> -->

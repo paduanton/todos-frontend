@@ -3,6 +3,12 @@
         <div class="col-md-5 mx-auto">
             <div id="second">
                 <div class="myform form ">
+                    <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <h5 class="alert-heading">Erro ao fazer login</h5>
+                        <p>{{ error?.error.message | json }}</p>
+                        <hr>
+                        <p class="mb-0">{{ error?.error.errors | json }}</p>
+                    </div>
                     <div class="logo mb-3">
                         <div class="col-md-12 text-center">
                             <h1>Cadastre-se</h1>
@@ -47,8 +53,6 @@
                         </div>
                     </div>
                 </div>
-                <p>{{ error?.message }}</p>
-                <p *ngIf="error">{{ error?.error | json }}</p>
             </div>
         </div>
     </div>
