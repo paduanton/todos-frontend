@@ -25,7 +25,7 @@ export class AuthService {
     const payload = <JWTPayload>jwtDecode(access_token);
     const expiresAt = moment.unix(payload.exp);
     
-    localStorage.setItem('access_token', authResult.token);
+    localStorage.setItem('access_token', authResult.access_token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
   }
 
@@ -57,23 +57,6 @@ export class AuthService {
     localStorage.removeItem('expires_at');
   }
 
-  refreshToken() {
-    if (
-      moment().isBetween(
-        this.getExpiration().subtract(1, 'days'),
-        this.getExpiration()
-      )
-    ) {
-      return this.http
-        .post(this.apiRoot.concat('refresh-token/'), { token: this.accessToken })
-        .pipe(
-          tap((response) => this.setSession(response)),
-          shareReplay()
-        )
-        .subscribe();
-    }
-  }
-
   getExpiration() {
     const expiration = localStorage.getItem('expires_at');
     const expiresAt = JSON.parse(expiration);
@@ -82,7 +65,11 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return moment().isBefore(this.getExpiration());
+
+    if(!this.accessToken || !moment().isBefore(this.getExpiration())) {
+      return false;
+    }
+    return true;
   }
 
   isLoggedOut() {
@@ -116,12 +103,10 @@ export class AuthGuard implements CanActivate {
 
   canActivate() {
     if (this.authService.isLoggedIn()) {
-      this.authService.refreshToken();
       return true;
     } else {
       this.authService.logout();
       this.router.navigate(['login']);
-
       return false;
     }
   }
