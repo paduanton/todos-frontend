@@ -5,7 +5,7 @@ import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-signup',
-  template: './signup.component.html',
+  templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
 
@@ -21,8 +21,8 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
 
-  signup(username: string, email: string, password1: string, password2: string) {
-    this.authService.signup(username, email, password1, password2).subscribe(
+  signup(name: string, email: string, password: string, password_confirmation: string, birthday: Date) {
+    this.authService.signup(name, email, password, password_confirmation, birthday).subscribe(
       success => this.router.navigate(['list']),
       error => this.error = error
     );

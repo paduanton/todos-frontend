@@ -29,8 +29,8 @@ export class AuthService {
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
   }
 
-  get token(): string {
-    return localStorage.getItem('token');
+  get accessToken(): string {
+    return localStorage.getItem('access_token');
   }
 
   login(username: string, password: string) {
@@ -42,10 +42,10 @@ export class AuthService {
       );
   }
 
-  signup(name: string, email: string, password: string, password_confirmation: string) {
+  signup(name: string, email: string, password: string, password_confirmation: string, birthday: Date) {
     return this.http
       .post(this.apiRoot.concat('/signup'), 
-      {name, email, password, password_confirmation})
+      {name, email, password, password_confirmation, birthday})
       .pipe(
         tap((response) => this.setSession(response)),
         shareReplay()
@@ -53,7 +53,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('access_token');
     localStorage.removeItem('expires_at');
   }
 
@@ -65,7 +65,7 @@ export class AuthService {
       )
     ) {
       return this.http
-        .post(this.apiRoot.concat('refresh-token/'), { token: this.token })
+        .post(this.apiRoot.concat('refresh-token/'), { token: this.accessToken })
         .pipe(
           tap((response) => this.setSession(response)),
           shareReplay()
@@ -96,11 +96,11 @@ export class AuthInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem('token');
+    const accessToken = localStorage.getItem('access_token');
 
-    if (token) {
+    if (accessToken) {
       const cloned = req.clone({
-        headers: req.headers.set('Authorization', 'JWT '.concat(token)),
+        headers: req.headers.set('Authorization', 'Bearer'.concat(accessToken)),
       });
 
       return next.handle(cloned);
@@ -117,7 +117,6 @@ export class AuthGuard implements CanActivate {
   canActivate() {
     if (this.authService.isLoggedIn()) {
       this.authService.refreshToken();
-
       return true;
     } else {
       this.authService.logout();
