@@ -20,12 +20,12 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  private setSession(authResult) {
-    const access_token = authResult.access_token;
+  private setSession(authResponse) {
+    const access_token = authResponse.access_token;
     const payload = <JWTPayload>jwtDecode(access_token);
     const expiresAt = moment.unix(payload.exp);
     
-    localStorage.setItem('access_token', authResult.access_token);
+    localStorage.setItem('access_token', authResponse.access_token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
   }
 
@@ -87,7 +87,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     if (accessToken) {
       const cloned = req.clone({
-        headers: req.headers.set('Authorization', 'Bearer'.concat(accessToken)),
+        headers: req.headers.set('Authorization', 'Bearer '.concat(accessToken)),
       });
 
       return next.handle(cloned);

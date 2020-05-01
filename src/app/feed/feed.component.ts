@@ -25,7 +25,7 @@ import { ShoppingItem } from './shopping-item.interface';
   <p *ngIf="error">{{ error?.error | json }}</p>
   `
 })
-export class ListComponent implements OnInit {
+export class FeedComponent implements OnInit {
 
   items: ShoppingItem[];
   error: any;
