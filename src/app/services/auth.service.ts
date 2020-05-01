@@ -11,8 +11,8 @@ import { CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap, shareReplay } from 'rxjs/operators';
 import * as jwtDecode from 'jwt-decode';
-import * as moment from 'node_modules/moment/moment';
-import { environment } from '../environments/environment';
+import * as moment from './../../../node_modules/moment/moment';
+import { environment } from './../../environments/environment';
 
 @Injectable()
 export class AuthService {
