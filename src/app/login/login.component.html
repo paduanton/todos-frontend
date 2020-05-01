@@ -10,7 +10,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email ou Nome de usuário</label>
-                        <input #username type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp"
+                        <input #user type="text" name="user" class="form-control" id="email" aria-describedby="emailHelp"
                             placeholder="fulano@gmail.com | fulano.tal">
                     </div>
                     <div class="form-group">
@@ -22,7 +22,7 @@
                         <p class="text-center">Lembrar de mim: <input #remember_me name="remember_me" type="checkbox"></p>
                     </div>
                     <div class="col-md-12 text-center ">
-                        <button (click)="login(username.value, password.value, remember_me.value)" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
+                        <button (click)="login(user.value, password.value, remember_me.checked)" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
                     </div>
                     <div class="col-md-12 ">
                         <div class="login-or">

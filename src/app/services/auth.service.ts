@@ -33,9 +33,9 @@ export class AuthService {
     return localStorage.getItem('access_token');
   }
 
-  login(username: string, password: string) {
+  login(credentials: object) {
     return this.http
-      .post(this.apiRoot.concat('login/'), { username, password })
+      .post(this.apiRoot.concat('/login'), credentials)
       .pipe(
         tap((response) => this.setSession(response)),
         shareReplay()

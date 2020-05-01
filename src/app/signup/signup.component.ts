@@ -23,7 +23,7 @@ export class SignupComponent implements OnInit {
 
   signup(name: string, email: string, password: string, password_confirmation: string, birthday: Date) {
     this.authService.signup(name, email, password, password_confirmation, birthday).subscribe(
-      success => this.router.navigate(['list']),
+      success => this.router.navigate(['feed']),
       error => this.error = error
     );
   }
