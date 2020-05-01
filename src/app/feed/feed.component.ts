@@ -1,57 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ApiService } from './api.service';
-import { ShoppingItem } from './shopping-item.interface';
+import { TodoService } from './../services/todos.service';
+import { Todos } from './../interfaces/todos.interface';
 
 @Component({
   selector: 'app-list',
-  template: `
-  <div style="text-align:center">
-    <h1>
-      Lista de compras
-    </h1>
-  </div>
-  <ul>
-    <li *ngFor="let item of items">
-      <h2>{{ item.quantity }}x {{ item.name }}
-      <button (click)="delete(item.id)">x</button></h2>
-    </li>
-  </ul>
-
-  <input #itemQuantity type='text' placeholder='Qtd'>
-  <input #itemName type='text' placeholder='Name'>
-  <button (click)="add(itemName.value, itemQuantity.value)">Add</button>
-  <p>{{ error?.message }}</p>
-  <p *ngIf="error">{{ error?.error | json }}</p>
-  `
+  templateUrl: './feed.component.html',
+  styleUrls: ['./feed.component.css']
 })
 export class FeedComponent implements OnInit {
-
-  items: ShoppingItem[];
+  items: Todos[];
   error: any;
 
-  constructor(private api: ApiService) { }
+  constructor(private todoService: TodoService) {}
 
   ngOnInit() {
-    this.api.getShoppingItems().subscribe(
-      (items: ShoppingItem[]) => this.items = items,
-      (error: any) => this.error = error
+    this.todoService.getTodos().subscribe(
+      (items: Todos[]) => (this.items = items),
+      (error: any) => (this.error = error)
     );
   }
 
-  add(itemName: string, itemQuantity: number) {
-    this.api.createShoppingItem(itemName, itemQuantity).subscribe(
-      (item: ShoppingItem) => this.items.push(item),
-      (error: any) => this.error = error
-    );
+  add(userId: number, title: string, description: string, completed: boolean) {
+    this.todoService
+      .createTodo(userId, title, description, completed)
+      .subscribe(
+        (item: Todos) => this.items.push(item),
+        (error: any) => (this.error = error)
+      );
   }
 
   delete(id: number) {
-    this.api.deleteShoppingItem(id).subscribe(
-      (success: any) => this.items.splice(
-        this.items.findIndex(item => item.id === id)
-      ),
-      (error: any) => this.error = error
+    this.todoService.deleteTodo(id).subscribe(
+      (success: any) =>
+        this.items.splice(this.items.findIndex((item) => item.id === id)),
+      (error: any) => (this.error = error)
     );
   }
 }

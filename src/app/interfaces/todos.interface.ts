@@ -1,4 +1,4 @@
-export interface ShoppingItem {
+export interface Todos {
   id: number;
   name: string;
   quantity: number;
