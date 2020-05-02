@@ -6,9 +6,15 @@
                 Adicionar Todo
             </button>
         </ul>
-        <div class="form-inline ml-auto mt-2 mt-md-0">
-            USUÁRIO
+        <div style="color: #fff"class="form-inline ml-auto mt-2 mt-md-0">
+            {{user.name}}
         </div>
+        <div style="color: #fff"class="form-inline ml-auto mt-2 mt-md-0">
+            Nome de usuário: {{user.username}}
+        </div>
+        <button (click)="logout()"class="form-inline ml-auto mt-2 mt-md-0">
+            Logout
+        </button>
     </div>
 </nav>
 

@@ -4,6 +4,7 @@ import { Todos } from './../interfaces/todos.interface';
 import { Users } from './../interfaces/users.interface';
 import { FormBuilder } from '@angular/forms';
 import { Location } from '@angular/common';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-todos',
@@ -19,7 +20,8 @@ export class TodosComponent implements OnInit {
   constructor(
     private todoService: TodoService,
     private formBuilder: FormBuilder,
-    private location: Location
+    private location: Location,
+    private auth: AuthService
   ) {
     this.addTodoForm = this.formBuilder.group({
       title: '',
@@ -31,6 +33,11 @@ export class TodosComponent implements OnInit {
   ngOnInit(): void {
     this.todoService.getAuthenticatedUser().subscribe(
       (users: Users) => localStorage.setItem('userId', `${users.id}`),
+      (error: any) => (this.error = error)
+    );
+
+    this.todoService.getAuthenticatedUser().subscribe(
+      (users: Users) => (this.user = users),
       (error: any) => (this.error = error)
     );
   }
@@ -45,6 +52,11 @@ export class TodosComponent implements OnInit {
 
     this.addTodoForm.reset();
   }
+
+  logout() {
+    this.auth.logout();
+    location.reload()
+    }
 
   add(userId, title: string, description: string, completed: boolean) {
     return this.todoService
