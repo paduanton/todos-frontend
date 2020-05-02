@@ -34,11 +34,6 @@ export class FeedComponent implements OnInit {
       (todos: Todos[]) => (this.todos = todos['data']),
       (error: any) => (this.error = error)
     );
-
-    this.todoService.getComments(1).subscribe(
-      (comments: Comments[]) => (this.comments = comments),
-      (error: any) => (this.error = error)
-    );
   }
 
   onSubmitUpdate(formValue, index) {
@@ -63,6 +58,15 @@ export class FeedComponent implements OnInit {
 
   }
   
+  getComment(todoId){
+    this.comments = []
+    
+    this.todoService.getComments(todoId).subscribe(
+      (comments: Comments[]) => (this.comments = comments),
+      (error: any) => (this.error = error)
+    );
+  }
+
   addComment(userId, todoId: number, description: string) {
     return this.todoService
     .createComment(userId, todoId, description)

@@ -39,7 +39,7 @@
                                                 <p>Id do usuário que cadastrou: {{ item.users_id }}</p>
                                             </div>
                                             <div class="mt">
-                                                <button [attr.data-target]="'#comments' + i" data-toggle="modal"
+                                                <button (click)="getComment(item.id)" [attr.data-target]="'#comments' + i" data-toggle="modal"
                                                     tabindex="0" class="btn bg-blue-ui white read">Comments</button>
                                             </div>
                                             <button class="btn bg-blue-ui white read" style="margin-left:15px"
@@ -74,18 +74,18 @@
                                 usuário id: {{comment.users_id}}
                                 <br>
                                 <small>
-                                    comentou em <a>{{item.title}}</a>
+                                    comentou em <a>{{item.title}}:</a>
                                 </small>
                             </h4>
                             <p>
-                               {{comment.description}}
+                               Comentário: {{comment.description}}
                             </p>
                         </div>
                     </li>
                 </ul>
                 <div class="form-inline">
                     <div class="form-group mx-sm-3 mb-2">
-                        <input type="text" #description class="form-control" id="description" placeholder="escreva um comentário">
+                        <input type="text" #description class="form-control" placeholder="escreva um comentário">
                     </div>
                     <button type="submit" (click)="postComment(description.value, i)"class="btn btn-secondary mb-2">Comentar</button>
                 </div>
