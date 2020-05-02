@@ -34,6 +34,10 @@ export class FeedComponent implements OnInit {
       (todos: Todos[]) => (this.todos = todos['data']),
       (error: any) => (this.error = error)
     );
+
+    if(!this.todos) {
+      this.todos = []
+    }
   }
 
   onSubmitUpdate(formValue, index) {
