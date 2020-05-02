@@ -1,5 +1,3 @@
-import * as moment from './../../../node_modules/moment/moment';
-
 export interface Todos {
   id: number;
   users_id: number;

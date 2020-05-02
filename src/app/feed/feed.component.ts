@@ -21,15 +21,6 @@ export class FeedComponent implements OnInit {
     );
   }
 
-  add(userId: number, title: string, description: string, completed: boolean) {
-    this.todoService
-      .createTodo(userId, title, description, completed)
-      .subscribe(
-        (item: Todos) => this.todos.push(item),
-        (error: any) => (this.error = error)
-      );
-  }
-
   delete(id: number) {
     this.todoService.deleteTodo(id).subscribe(
       (success: any) =>

@@ -1,15 +1,10 @@
-<div *ngIf="!todos" class="jumbotron">
-    <h1 class="display-4">Nenhum Todo cadastrado até o momento - 404</h1>
-</div>
+
 <!-- <input #itemQuantity type="text" placeholder="Qtd" /> -->
 <!-- <input #itemName type="text" placeholder="Name" /> -->
 <!-- <button (click)="delete(item.id)">x</button> -->
 <!-- <button (click)="add(itemName.value, itemQuantity.value)">Add</button> -->
-<p>{{ error?.message }}</p>
-<p *ngIf="error">{{ error?.error | json }}</p>
-
-
-<div class="container cta-100 ">
+<app-todos></app-todos>
+<div *ngIf="todos" class="container cta-100">
     <div class="container">
         <div class="row blog">
             <div class="col-md-12">
@@ -21,7 +16,8 @@
                                     <div class="item-box-blog">
                                         <div class="item-box-blog-image">
                                             <div class="item-box-blog-date bg-blue-ui white">
-                                                 <span class="mon">{{ item.created_at }}</span>
+                                                <span class="mon">Criado em
+                                                    {{ item.created_at | date: 'dd/MM/yyyy'}}</span>
                                             </div>
                                             <figure>
                                                 <img alt="{{ item.title }}"
@@ -29,139 +25,23 @@
                                             </figure>
                                         </div>
                                         <div class="item-box-blog-body">
-                                            <!--Heading-->
                                             <div class="item-box-blog-heading">
                                                 <a href="#" tabindex="0">
                                                     <h5>{{ item.title }}</h5>
                                                 </a>
                                             </div>
-                                            <!--Data-->
-                                            <div class="item-box-blog-data" style="padding: px 15px;">
-                                                <p><i class="fa fa-user-o"></i> Admin, <i class="fa fa-comments-o"></i>
-                                                    Comments(3)</p>
-                                            </div>
-                                            <!--Text-->
                                             <div class="item-box-blog-text">
                                                 <p>{{ item.description }}</p>
+                                            </div>
+                                            <div class="item-box-blog-data" style="padding: px 15px;">
+                                                <p>Atualizado em {{ item.updated_at | date: 'dd/MM/yyyy'}}</p>
+                                                <p *ngIf="item.completed"> Status: Concluído (completed = true)</p>
+                                                <p *ngIf="!item.completed"> Status: Não concluído (completed = false)</p>
+                                                <p>Id do usuário que cadastrou: {{ item.users_id }}</p>
                                             </div>
                                             <div class="mt"> <a href="#" tabindex="0"
                                                     class="btn bg-blue-ui white read">Veja mais</a>
                                             </div>
-                                            <!--Read More Button-->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--.row-->
-                        </div>
-                        <!--.item-->
-                        <div class="carousel-item ">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="item-box-blog">
-                                        <div class="item-box-blog-image">
-                                            <!--Date-->
-                                            <div class="item-box-blog-date bg-blue-ui white"> <span class="mon">Augu
-                                                    01</span> </div>
-                                            <!--Image-->
-                                            <figure> <img alt=""
-                                                    src="https://cdn.pixabay.com/photo/2017/02/08/14/25/computer-2048983_960_720.jpg">
-                                            </figure>
-                                        </div>
-                                        <div class="item-box-blog-body">
-                                            <!--Heading-->
-                                            <div class="item-box-blog-heading">
-                                                <a href="#" tabindex="0">
-                                                    <h5>News Title</h5>
-                                                </a>
-                                            </div>
-                                            <!--Data-->
-                                            <div class="item-box-blog-data" style="padding: px 15px;">
-                                                <p><i class="fa fa-user-o"></i> Admin, <i class="fa fa-comments-o"></i>
-                                                    Comments(3)</p>
-                                            </div>
-                                            <!--Text-->
-                                            <div class="item-box-blog-text">
-                                                <p>Lorem ipsum dolor sit amet, adipiscing. Lorem ipsum dolor sit amet,
-                                                    consectetuer adipiscing. Lorem ipsum dolor sit amet, adipiscing.
-                                                    Lorem ipsum dolor sit amet, adipiscing. Lorem ipsum dolor sit amet,
-                                                    consectetuer adipiscing. Lorem ipsum dolor.</p>
-                                            </div>
-                                            <div class="mt"> <a href="#" tabindex="0"
-                                                    class="btn bg-blue-ui white read">read more</a> </div>
-                                            <!--Read More Button-->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="item-box-blog">
-                                        <div class="item-box-blog-image">
-                                            <!--Date-->
-                                            <div class="item-box-blog-date bg-blue-ui white"> <span class="mon">Augu
-                                                    01</span> </div>
-                                            <!--Image-->
-                                            <figure> <img alt=""
-                                                    src="https://cdn.pixabay.com/photo/2017/02/08/14/25/computer-2048983_960_720.jpg">
-                                            </figure>
-                                        </div>
-                                        <div class="item-box-blog-body">
-                                            <!--Heading-->
-                                            <div class="item-box-blog-heading">
-                                                <a href="#" tabindex="0">
-                                                    <h5>News Title</h5>
-                                                </a>
-                                            </div>
-                                            <!--Data-->
-                                            <div class="item-box-blog-data" style="padding: px 15px;">
-                                                <p><i class="fa fa-user-o"></i> Admin, <i class="fa fa-comments-o"></i>
-                                                    Comments(3)</p>
-                                            </div>
-                                            <!--Text-->
-                                            <div class="item-box-blog-text">
-                                                <p>Lorem ipsum dolor sit amet, adipiscing. Lorem ipsum dolor sit amet,
-                                                    consectetuer adipiscing. Lorem ipsum dolor sit amet, adipiscing.
-                                                    Lorem ipsum dolor sit amet, adipiscing. Lorem ipsum dolor sit amet,
-                                                    consectetuer adipiscing. Lorem ipsum dolor.</p>
-                                            </div>
-                                            <div class="mt"> <a href="#" tabindex="0"
-                                                    class="btn bg-blue-ui white read">read more</a> </div>
-                                            <!--Read More Button-->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="item-box-blog">
-                                        <div class="item-box-blog-image">
-                                            <!--Date-->
-                                            <div class="item-box-blog-date bg-blue-ui white"> <span class="mon">Augu
-                                                    01</span> </div>
-                                            <!--Image-->
-                                            <figure> <img alt=""
-                                                    src="https://cdn.pixabay.com/photo/2017/02/08/14/25/computer-2048983_960_720.jpg">
-                                            </figure>
-                                        </div>
-                                        <div class="item-box-blog-body">
-                                            <!--Heading-->
-                                            <div class="item-box-blog-heading">
-                                                <a href="#" tabindex="0">
-                                                    <h5>News Title</h5>
-                                                </a>
-                                            </div>
-                                            <!--Data-->
-                                            <div class="item-box-blog-data" style="padding: px 15px;">
-                                                <p><i class="fa fa-user-o"></i> Admin, <i class="fa fa-comments-o"></i>
-                                                    Comments(3)</p>
-                                            </div>
-                                            <!--Text-->
-                                            <div class="item-box-blog-text">
-                                                <p>Lorem ipsum dolor sit amet, adipiscing. Lorem ipsum dolor sit amet,
-                                                    consectetuer adipiscing. Lorem ipsum dolor sit amet, adipiscing.
-                                                    Lorem ipsum dolor sit amet, adipiscing. Lorem ipsum dolor sit amet,
-                                                    consectetuer adipiscing. Lorem ipsum dolor.</p>
-                                            </div>
-                                            <div class="mt"> <a href="#" tabindex="0"
-                                                    class="btn bg-blue-ui white read">read more</a> </div>
-                                            <!--Read More Button-->
                                         </div>
                                     </div>
                                 </div>
@@ -174,6 +54,21 @@
                 </div>
                 <!--.Carousel-->
             </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!todos" class="row error-404">
+    <div class="col-md-12">
+        <div class="error-template">
+            <h1>
+                Ops!</h1>
+            <h2>
+                404 Não encontrado</h2>
+            <div class="error-details">
+                Nenhum <b>Todo</b> cadastrado até o momento
+            </div>
+          
         </div>
     </div>
 </div>

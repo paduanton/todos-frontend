@@ -11,4 +11,16 @@ export class AppComponent implements OnInit {
   ngOnInit() {
   }
   
+  formatsDate: string[] = [
+    'dd/MM/yyyy',
+    'dd/MM/yyyy hh:mm:ss',
+    'dd-MM-yyyy',
+    'dd-MM-yyyy HH:mm:ss',
+    'MM/dd/yyyy',
+    'MM/dd/yyyy hh:mm:ss',
+    'yyyy/MM/dd',
+    'yyyy/MM/dd HH:mm:ss',
+    'dd/MM/yy',
+    'dd/MM/yy hh:mm:ss',
+    ];
 }

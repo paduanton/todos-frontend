@@ -13,9 +13,9 @@ import {
 import { FeedComponent } from './feed/feed.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-
+import { TodosComponent } from './todos/todos.component';
 @NgModule({
-  declarations: [AppComponent, FeedComponent, LoginComponent, SignupComponent],
+  declarations: [AppComponent, FeedComponent, LoginComponent, SignupComponent, TodosComponent],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [
     TodoService,
