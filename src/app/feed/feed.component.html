@@ -39,7 +39,7 @@
                                                 <p>Id do usuário que cadastrou: {{ item.users_id }}</p>
                                             </div>
                                             <div class="mt">
-                                                <button [attr.data-target]="'#comments' + i"tabindex="0" class="btn bg-blue-ui white read">Comments</button>
+                                                <button [attr.data-target]="'#comments' + i" data-toggle="modal" tabindex="0" class="btn bg-blue-ui white read">Comments</button>
                                             </div>
                                             <button  class="btn bg-blue-ui white read" style="margin-left:15px" data-toggle="modal"  [attr.data-target]="'#modal' + i">Atualizar</button>
                                         </div>

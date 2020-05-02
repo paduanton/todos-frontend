@@ -24,6 +24,10 @@ export class TodoService {
     return this.http.get(this.apiRoot.concat('/user'));
   }
 
+  getUserById(id: number) {
+    return this.http.get(this.apiRoot.concat(`/user/${id}`));
+  }
+
   updateTodo(id: number, title: string, description: string, completed: boolean) {
     return this.http.put(this.apiRoot.concat(`/todos/${id}`), {
       title,
