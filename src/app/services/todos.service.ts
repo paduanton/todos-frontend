@@ -12,13 +12,17 @@ export class TodoService {
     return this.http.get(this.apiRoot.concat('/todos'));
   }
 
-  createTodo(userId: number,title: string, description: string, completed: boolean) {
+  createTodo(userId,title: string, description: string, completed: boolean) {
 
     return this.http.post(this.apiRoot.concat(`/users/${userId}/todos`), {
       title,
       description,
       completed
     });
+  }
+
+  getAuthenticatedUser() {
+    return this.http.get(this.apiRoot.concat('/user'));
   }
 
   deleteTodo(id: number) {

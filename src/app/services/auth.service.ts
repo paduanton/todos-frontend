@@ -17,14 +17,14 @@ import { environment } from './../../environments/environment';
 @Injectable()
 export class AuthService {
   private apiRoot = environment.apiBaseUri;
-
+  error;
   constructor(private http: HttpClient) {}
 
   private setSession(authResponse) {
     const access_token = authResponse.access_token;
     const payload = <JWTPayload>jwtDecode(access_token);
     const expiresAt = moment.unix(payload.exp);
-    
+ 
     localStorage.setItem('access_token', authResponse.access_token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
   }
@@ -55,8 +55,13 @@ export class AuthService {
   logout() {
     localStorage.removeItem('access_token');
     localStorage.removeItem('expires_at');
+    localStorage.removeItem('userId');
   }
 
+  getAuthenticatedUser() {
+    return this.http.get(this.apiRoot.concat('/user'));
+  }
+  
   getExpiration() {
     const expiration = localStorage.getItem('expires_at');
     const expiresAt = JSON.parse(expiration);
