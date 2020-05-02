@@ -52,7 +52,7 @@ export class FeedComponent implements OnInit {
 
   delete(id: number) {
     this.todoService.deleteTodo(id).subscribe(
-      (success: any) => alert("Excluído com sucesso, atualize a página"),
+      (success: any) => (this.todos.splice(this.todos.findIndex(item => item.id === id)), alert("Excluído com sucesso.")),
       (error: any) => (this.error = error)
     );
   }

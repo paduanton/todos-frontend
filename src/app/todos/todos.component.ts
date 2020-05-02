@@ -5,6 +5,7 @@ import { Users } from './../interfaces/users.interface';
 import { FormBuilder } from '@angular/forms';
 import { Location } from '@angular/common';
 import { AuthService } from '../services/auth.service';
+import { FeedComponent } from '../feed/feed.component';
 
 @Component({
   selector: 'app-todos',
@@ -18,6 +19,7 @@ export class TodosComponent implements OnInit {
   addTodoForm;
 
   constructor(
+    private feed: FeedComponent,
     private todoService: TodoService,
     private formBuilder: FormBuilder,
     private location: Location,
@@ -61,8 +63,8 @@ export class TodosComponent implements OnInit {
   add(userId, title: string, description: string, completed: boolean) {
     return this.todoService
       .createTodo(userId, title, description, completed)
-      .subscribe(
-        (item: Todos) => alert('Cadastrado com sucesso. Por favor, atualize a página.'),
+      .subscribe( //
+        (item: Todos) => (this.feed.todos.push(item), alert('Cadastrado com sucesso.')),
         (error: any) => (this.error = error)
       );
   }

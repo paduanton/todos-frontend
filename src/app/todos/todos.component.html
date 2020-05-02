@@ -2,8 +2,14 @@
     <a class="navbar-brand" href="#">Todos Social</a>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto sidenav text-center" id="navAccordion">
+            <div type="button" class="btn" data-toggle="modal" data-target="#addTodoModal">
+                ID: {{user.id}} - {{user.email}}
+            </div>
             <button type="button" class="btn" data-toggle="modal" data-target="#addTodoModal">
                 Adicionar Todo
+            </button>
+            <button type="button" (click)="logout()" class="btn" data-toggle="modal" data-target="#addTodoModal">
+                Logout
             </button>
         </ul>
         <div style="color: #fff"class="form-inline ml-auto mt-2 mt-md-0">
@@ -11,10 +17,7 @@
         </div>
         <div style="color: #fff"class="form-inline ml-auto mt-2 mt-md-0">
             Nome de usuário: {{user.username}}
-        </div>
-        <button (click)="logout()"class="form-inline ml-auto mt-2 mt-md-0">
-            Logout
-        </button>
+        </div> 
     </div>
 </nav>
 
