@@ -28,7 +28,25 @@ export class TodoService {
     return this.http.get(this.apiRoot.concat(`/user/${id}`));
   }
 
-  updateTodo(id: number, title: string, description: string, completed: boolean) {
+  getComments(todoId: number) {
+    return this.http.get(this.apiRoot.concat(`/todos/${todoId}/comments`));
+  }
+
+  createComment(userId: number, todoId: number, description: string) {
+    return this.http.post(
+      this.apiRoot.concat(`/users/${userId}/todos/${todoId}/comments`),
+      {
+        description,
+      }
+    );
+  }
+
+  updateTodo(
+    id: number,
+    title: string,
+    description: string,
+    completed: boolean
+  ) {
     return this.http.put(this.apiRoot.concat(`/todos/${id}`), {
       title,
       description,

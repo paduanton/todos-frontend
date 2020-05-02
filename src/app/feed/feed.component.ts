@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { TodoService } from './../services/todos.service';
 import { Todos } from './../interfaces/todos.interface';
+import { Comments } from './../interfaces/comments.interface';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -11,6 +12,7 @@ import { FormBuilder } from '@angular/forms';
 })
 export class FeedComponent implements OnInit {
   todos: Todos[];
+  comments: Comments[];
   error: any;
   updateTodoForm;
   id;
@@ -32,6 +34,11 @@ export class FeedComponent implements OnInit {
       (todos: Todos[]) => (this.todos = todos['data']),
       (error: any) => (this.error = error)
     );
+
+    this.todoService.getComments(1).subscribe(
+      (comments: Comments[]) => (this.comments = comments),
+      (error: any) => (this.error = error)
+    );
   }
 
   onSubmitUpdate(formValue, index) {
@@ -46,6 +53,23 @@ export class FeedComponent implements OnInit {
     } catch (error) {}
 
     this.updateTodoForm.reset();
+  }
+
+  postComment(description: string, index) {
+    const todo = this.todos[index];
+    const userId = localStorage.getItem('userId');
+
+    this.addComment(userId, todo.id, description);
+
+  }
+  
+  addComment(userId, todoId: number, description: string) {
+    return this.todoService
+    .createComment(userId, todoId, description)
+    .subscribe( //
+      (item: Comments) => (this.comments.push(item), alert('Comentado com sucesso.')),
+      (error: any) => (this.error = error)
+    );
   }
 
   update(id: number, title: string, description: string, completed: boolean) {
