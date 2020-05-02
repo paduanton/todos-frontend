@@ -88,7 +88,7 @@ export class FeedComponent implements OnInit {
   delete(id: number) {
     this.todoService.deleteTodo(id).subscribe(
       (success: any) => (
-        this.todos.splice(this.todos.findIndex((item) => item.id === id)),
+        this.todos.splice(this.todos.findIndex((item) => item.id === id), 1),
         alert('Excluído com sucesso.')
       ),
       (error: any) => (this.error = error)

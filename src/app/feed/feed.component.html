@@ -61,7 +61,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Comentários</h5>
+                <h5 class="modal-title">Comentários</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -103,7 +103,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Atualizar Todo</h5>
+                <h5 class="modal-title" >Atualizar Todo</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -118,24 +118,23 @@
                     </div>
                     <div class="form-group">
                         <label for="title">Título</label>
-                        <input #title type="text" formControlName="title" value="{{item.title}}" class="form-control"
-                            id="title">
+                        <input #title type="text" formControlName="title" value="{{item.title}}" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="description">Descrição</label>
-                        <textarea #description class="form-control" formControlName="description" id="description"
+                        <textarea #description class="form-control" formControlName="description"
                             rows="3"></textarea>
                     </div>
                     O todo foi concluído?
                     <br>
                     <div class="form-check form-check-inline">
                         <input #completed class="form-check-input" formControlName="completed" type="radio"
-                            id="inlineRadio1" value="1">
+                            value="1">
                         <label class="form-check-label" for="inlineRadio1">Sim</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input #completed class="form-check-input" formControlName="completed" type="radio"
-                            id="inlineRadio2" value="0">
+                             value="0">
                         <label class="form-check-label" for="inlineRadio2">Não</label>
                     </div>
                 </div>
