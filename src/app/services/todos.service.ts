@@ -12,17 +12,24 @@ export class TodoService {
     return this.http.get(this.apiRoot.concat('/todos'));
   }
 
-  createTodo(userId,title: string, description: string, completed: boolean) {
-
+  createTodo(userId, title: string, description: string, completed: boolean) {
     return this.http.post(this.apiRoot.concat(`/users/${userId}/todos`), {
       title,
       description,
-      completed
+      completed,
     });
   }
 
   getAuthenticatedUser() {
     return this.http.get(this.apiRoot.concat('/user'));
+  }
+
+  updateTodo(id: number, title: string, description: string, completed: boolean) {
+    return this.http.put(this.apiRoot.concat(`/todos/${id}`), {
+      title,
+      description,
+      completed,
+    });
   }
 
   deleteTodo(id: number) {

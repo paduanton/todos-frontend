@@ -50,7 +50,7 @@ export class TodosComponent implements OnInit {
     return this.todoService
       .createTodo(userId, title, description, completed)
       .subscribe(
-        (item: Todos) => alert('Cadastrado com sucesso'),
+        (item: Todos) => alert('Cadastrado com sucesso. Por favor, atualize a página.'),
         (error: any) => (this.error = error)
       );
   }

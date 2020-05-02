@@ -3,6 +3,9 @@
   text-align: center;
 }
 
+.excluir:hover {
+  cursor: pointer!important;
+}
 .error-actions {
   margin-top   : 15px;
   margin-bottom: 15px;
