@@ -84,7 +84,7 @@ export class FeedComponent implements OnInit {
     return this.todoService
       .updateTodo(id, title, description, completed)
       .subscribe(
-        (success: any) => alert('Atualizado com sucesso, F5 na página'),
+        (item: Todos) => (confirm('Atualizado com sucesso, F5 na página'), this.todos[this.todos.findIndex((item) => item.id === id)] = item),
         (error: any) => (this.error = error)
       );
   }
