@@ -1,17 +1,17 @@
 # Visão Geral
 
-Todos Social é um pequeno projeto de código aberto que implementa os conceitos básicos de rede e mídia sociais. Esse projeto é o frontend somente. A REST API backend foi desenvolvida Laravel e pode ser vista aqui:
+Todos Social é um pequeno projeto de código aberto que implementa os conceitos básicos de rede e mídia sociais. Esse projeto é o frontend somente. A REST API backend foi desenvolvida com Laravel e pode ser vista aqui:
 
 [Todos Social - Restful API](https://github.com/paduanton/todos-social)
 
-A API possui todas funcionalidades desenvolvidas e documentadas, porém até este presente momento este projeto frontend consome somente parte das funcionalidades.
+A API possui todas funcionalidades básicas e documentadas, porém até o presente momento este projeto frontend consome somente parte do backend.
 
 ## Recursos
 Os recursos que o frontend tem até o momento são:
 - Autenticação (signup, login e logout)
 - Listar, Cadastrar, Atualizar e excluir Todos
-- Listar informações de usuário autenticado
-- Listar e adicionar comentários
+- Listar informações do usuário autenticado
+- Listar e adicionar comentários de Todos
 
 ## Requisitos de sistema (Mac OS, Windows ou Linux)
 * [Node.js e NPM](https://nodejs.org/en/download/)
