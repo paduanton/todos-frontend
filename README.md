@@ -1,27 +1,43 @@
-# TodosFrontend
+# Visão Geral
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
+Todos Social é um pequeno projeto de código aberto que implementa os conceitos básicos de rede e mídia sociais. Esse projeto é o frontend somente. A REST API backend foi desenvolvida Laravel e pode ser vista aqui:
 
-## Development server
+[Todos Social - Restful API](https://github.com/paduanton/todos-social)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+A API possui todas funcionalidades desenvolvidas e documentadas, porém até este presente momento este projeto frontend consome somente parte das funcionalidades.
 
-## Code scaffolding
+## Recursos
+Os recursos que o frontend tem até o momento são:
+- Autenticação (signup, login e logout)
+- Listar, Cadastrar, Atualizar e excluir Todos
+- Listar informações de usuário autenticado
+- Listar e adicionar comentários
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Requisitos de sistema (Mac OS, Windows ou Linux)
+* [Node.js e NPM](https://nodejs.org/en/download/)
+* [Docker](https://www.docker.com/get-started)
+* [Docker Compose](https://docs.docker.com/compose/install)
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Setup do projeto
 
-## Running unit tests
+Adicione a seguinte linha no arquivo hosts da sua máquina:
+```
+127.0.0.1       todos.social
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Dentro do diretório do repositório, rode os seguintes comandos no bash:
 
-## Running end-to-end tests
+Instalar dependências do projeto:
+```
+npm install
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Montar e criar ambiente de dev local:
+```
+ docker-compose up --build
+```
 
-## Further help
+Lembrando que para funcionar corretamente, o backend citado no início já deve estar configurado e funcionando corretamente.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Para acessar a aplicação frontend acesse http://todos.social:4200/ no navegador.
