@@ -26,7 +26,7 @@ Adicione a seguinte linha no arquivo hosts da sua máquina:
 127.0.0.1       todos.social
 ```
 
-Dentro do diretório do repositório, rode os seguintes comandos no bash:
+Após clonar o repositório, rode os seguintes comandos no bash dentro do diretório do projeto:
 
 Instalar dependências do projeto:
 ```
@@ -40,4 +40,4 @@ Montar e criar ambiente de dev local:
 
 Lembrando que para funcionar corretamente, o backend citado no início já deve estar configurado e funcionando corretamente.
 
-Para acessar a aplicação frontend acesse http://todos.social:4200/ no navegador.
+Para ver a aplicação frontend acesse http://todos.social:4200/ no navegador.
