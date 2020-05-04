@@ -4,14 +4,15 @@ Todos Social é um pequeno projeto de código aberto que implementa os conceitos
 
 [Todos Social - Restful API](https://github.com/paduanton/todos-social)
 
-A API possui todas funcionalidades básicas e documentadas, porém até o presente momento este projeto frontend consome somente parte do backend.
+A API possui todas funcionalidades, porém até o presente momento este projeto frontend consome somente parte do backend.
 
 ## Recursos
 Os recursos que o frontend tem até o momento são:
 - Autenticação (signup, login e logout)
-- Listar, Cadastrar, Atualizar e excluir Todos
+- Listar, cadastrar, atualizar e excluir Todos
 - Listar informações do usuário autenticado
 - Listar e adicionar comentários de Todos
+- Proteção de rotas que precisam de autenticação
 
 ## Requisitos de sistema (Mac OS, Windows ou Linux)
 * [Node.js e NPM](https://nodejs.org/en/download/)
